@@ -1,0 +1,60 @@
+#HELSINSKY
+
+##DIAGRAMA DE SECUENCIAS
+
+###EJERCICIO 0.4 : Nueva nota.
+
+*browser->server: HTTP GET : HTTP GET https://studies.cs.helsinki./exampplesapp/notes.
+				: content type: text/html	
+
+*luego el navegador le hace al servidor 3 solicitudes:
+
+*server->browser: HTML CODE,main.ccs,main.js y data.json.
+
+*cliente->browser: submit form input note.
+*browser->server: HTTP POST : https://studies.cs.helsinki.fi/exampleapp/new_note
+					 Estado : 302(redireccion).
+
+*server->browser: form data: note:"ejercio0.4" (nota creada)
+
+*el navegador despues de crear
+ la nota hace 5 solicitudes nuevamente:
+ *exampplesapp/notes
+ *main.css
+ *main.js
+ *data.json
+
+
+
+###EJERCICIO 0.5: Aplicación de una sola página.
+
+*browser->server: HTTP GET : https://studies.cs.helsinki.fi/exampleapp/spa
+*server->browser: http code
+*browser->server: HTTP GET : https://studies.cs.helsinki.fi/exampleapp/main.ccs
+*server->browser: main.css
+*browser->server: HTTP GET :https://studies.cs.helsinki.fi/exampleapp/main.js
+*server->browser: main.js
+
+browser ejecuta main.js
+y al activar las notas activa el 
+manejador de eventos para mostrar 
+los datos con data.json
+*browser->server: HTTP GET :https://studies.cs.helsinki.fi/exampleapp/data.json
+*server->browser: muestra las notas creadas en json.
+
+
+###EJERCICIO 0.6: Nueva nota
+
+*browser->server: HTTP POST : https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+*server->brwoser: STATUS CODE: 201(CREADO)
+				: CONTENT TYPE: aplicacion/json
+				: {content: "nueva_nota_spa", date: "2021-11-07T01:38:18.161Z"}
+					content: "nueva_nota_spa"
+					date: "2021-11-07T01:38:18.161Z" 
+
+el browser permanece en la misma 
+pagina y solo hace una solicitud que 
+es new_note_spa.
+
+
+
